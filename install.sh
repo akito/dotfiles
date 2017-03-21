@@ -2,7 +2,7 @@
 
 set -u
 
-# 実行場所のディレクトリを取得
+# Get directory of execution location
 THIS_DIR=$(cd $(dirname $0); pwd)
 
 cd $THIS_DIR
