@@ -65,6 +65,9 @@ NeoBundleCheck
 "----------------------------------------------------------
 " カラースキーム
 "----------------------------------------------------------
+autocmd ColorScheme * highlight Normal ctermbg=none
+autocmd ColorScheme * highlight LineNr ctermbg=none
+
 if neobundle#is_installed('molokai')
     colorscheme molokai " カラースキームにmolokaiを設定する
 endif
