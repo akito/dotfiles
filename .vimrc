@@ -1,8 +1,8 @@
+
+" the character code at the time of reading
 set encoding=utf-8
+" Setting for using multibyte in Vim Script
 scriptencoding utf-8
-" ↑1行目は読み込み時の文字コードの設定
-" ↑2行目はVim Script内でマルチバイトを使う場合の設定
-" Vim scritptにvimrcも含まれるので、日本語でコメントを書く場合は先頭にこの設定が必要になる
 
 "----------------------------------------------------------
 " NeoBundle
@@ -18,90 +18,92 @@ if has('vim_starting')
     endif
 endif
 
+
 call neobundle#begin(expand('~/.vim/bundle/'))
 
-" インストールするVimプラグインを以下に記述
-" NeoBundle自身を管理
+" vim plugin to be installed below
+" Manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
-" カラースキームmolokai
+" color scheme
 NeoBundle 'tomasr/molokai'
-" ステータスラインの表示内容強化
+" Strengthened display of status line
 NeoBundle 'itchyny/lightline.vim'
-" インデントの可視化
+" Indent visualization
 NeoBundle 'Yggdroot/indentLine'
-" 末尾の全角半角空白文字を赤くハイライト
+" Leading full-width and one-byte space character highlighted in red
 NeoBundle 'bronson/vim-trailing-whitespace'
-" 構文エラーチェック
+" Syntax error check
 NeoBundle 'scrooloose/syntastic'
-" 多機能セレクタ
+" Multifunction selector
 NeoBundle 'ctrlpvim/ctrlp.vim'
-" CtrlPの拡張プラグイン. 関数検索
+" Extended plugin for CtrlP. Function search
 NeoBundle 'tacahiroy/ctrlp-funky'
-" CtrlPの拡張プラグイン. コマンド履歴検索
+" Extended plugin for CtrlP. Command history search
 NeoBundle 'suy/vim-ctrlp-commandline'
-" CtrlPの検索にagを使う
+" Use ag to search CtrlP
 NeoBundle 'rking/ag.vim'
-" プロジェクトに入ってるESLintを読み込む
+" Load ESLint in project
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 
-" vimのlua機能が使える時だけ以下のVimプラグインをインストールする
+" Install the following Vim plugin only when vim's lua function is available
 if has('lua')
-    " コードの自動補完
+    " Automatic completion of code
     NeoBundle 'Shougo/neocomplete.vim'
-    " スニペットの補完機能
+    " Supplement function of snippet
     NeoBundle "Shougo/neosnippet"
-    " スニペット集
+    " Snippet collection
     NeoBundle 'Shougo/neosnippet-snippets'
 endif
 
 call neobundle#end()
 
-" ファイルタイプ別のVimプラグイン/インデントを有効にする
+" Enable Vim plugin / indent by file type
 filetype plugin indent on
 
-" 未インストールのVimプラグインがある場合、インストールするかどうかを尋ねてくれるようにする設定
+" If you have an uninstalled Vim plugin, you will be asked if you want to install it
 NeoBundleCheck
 
 "----------------------------------------------------------
-" カラースキーム
+" Color scheme
 "----------------------------------------------------------
+" Make the background color of the terminal the same as the background color of vim
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 
 if neobundle#is_installed('molokai')
-    colorscheme molokai " カラースキームにmolokaiを設定する
+    colorscheme molokai " Set molokai for color scheme
 endif
 
-set t_Co=256 " iTerm2など既に256色環境なら無くても良い
-syntax enable " 構文に色を付ける
+set t_Co=256 " 256 colors
+syntax enable " Color syntax
 
 "----------------------------------------------------------
-" 文字
+" character
 "----------------------------------------------------------
-set fileencoding=utf-8 " 保存時の文字コード
-set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " 読み込み時の文字コードの自動判別. 左側が優先される
-set fileformats=unix,dos,mac " 改行コードの自動判別. 左側が優先される
-set ambiwidth=double " □や○文字が崩れる問題を解決
+set fileencoding=utf-8 " Character code when saved
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932 " Automatic determination of character code when reading, priority on the left side
+set fileformats=unix,dos,mac " Automatic discrimination of line feed code, the left side has priority
+set ambiwidth=double " □ and ○ Solve the problem of collapse
 
 "----------------------------------------------------------
-" ステータスライン
+" Status line
 "----------------------------------------------------------
-set laststatus=2 " ステータスラインを常に表示
-set showmode " 現在のモードを表示
-set showcmd " 打ったコマンドをステータスラインの下に表示
-set ruler " ステータスラインの右側にカーソルの位置を表示する
+set laststatus=2 " Always show status line
+set showmode " Show current mode
+set showcmd " The hit command is displayed below the status line
+set ruler " Display the position of the cursor on the right side of the status line
 
 "----------------------------------------------------------
-" コマンドモード
+" Command mode
 "----------------------------------------------------------
-set wildmenu " コマンドモードの補完
-set history=5000 " 保存するコマンド履歴の数
+set wildmenu " Command mode completion
+set history=5000 " Number of command history to save
 
 "----------------------------------------------------------
-" タブ・インデント
+" Tab indent
 "----------------------------------------------------------
-set expandtab " タブ入力を複数の空白入力に置き換える
-set tabstop=4 " 画面上でタブ文字が占める幅
+set expandtab " Replace tab input with multiple blank inputs
+set tabstop=4 " Width occupied by tab characters on the screen
 set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 set autoindent " 改行時に前の行のインデントを継続する
 set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
