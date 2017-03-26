@@ -1,0 +1,13 @@
+[user]
+	name = akitojp
+	email = akito.tsutsui@gmail.com
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+	precomposeunicode = true
+	quotepath = false
+[merge]
+	tool = vimdiff
+[color]
+	diff = auto
+	status = auto
+	branch = auto
