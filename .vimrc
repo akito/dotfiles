@@ -8,10 +8,10 @@ scriptencoding utf-8
 " NeoBundle
 "----------------------------------------------------------
 if has('vim_starting')
-    " 初回起動時のみruntimepathにNeoBundleのパスを指定する
+    " Specify the path of NeoBundle in runtimepath only when it is started for the first time
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 
-    " NeoBundleが未インストールであればgit cloneする
+    " If NeoBundle is not installed, git clone
     if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
         echo "install NeoBundle..."
         :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
@@ -104,46 +104,46 @@ set history=5000 " Number of command history to save
 "----------------------------------------------------------
 set expandtab " Replace tab input with multiple blank inputs
 set tabstop=4 " Width occupied by tab characters on the screen
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent " 改行時に前の行のインデントを継続する
-set smartindent " 改行時に前の行の構文をチェックし次の行のインデントを増減する
-set shiftwidth=4 " smartindentで増減する幅
+set softtabstop=4 " The width at which the cursor moves with a tab key or backspace key for consecutive blanks
+set autoindent " Continue indentation of previous line at line feed
+set smartindent " Check the syntax of the previous line on line feed and increase / decrease the indent of the next line
+set shiftwidth=4 " Width that increases and decreases with smartindent
 
 "----------------------------------------------------------
-" 文字列検索
+" String search
 "----------------------------------------------------------
-set incsearch " インクリメンタルサーチ. １文字入力毎に検索を行う
-set ignorecase " 検索パターンに大文字小文字を区別しない
-set smartcase " 検索パターンに大文字を含んでいたら大文字小文字を区別する
-set hlsearch " 検索結果をハイライト
+set incsearch " Incremental search. Perform a search for each character entry
+set ignorecase " Search pattern is not case sensitive
+set smartcase " f the search pattern contains capital letters, distinguish case
+set hlsearch " Highlight search results
 
-" ESCキー2度押しでハイライトの切り替え
+" Toggle highlighting by pressing the ESC key twice
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 "----------------------------------------------------------
-" カーソル
+" cursor
 "----------------------------------------------------------
-set whichwrap=b,s,h,l,<,>,[,],~ " カーソルの左右移動で行末から次の行の行頭への移動が可能になる
-set number " 行番号を表示
-set cursorline " カーソルラインをハイライト
+set whichwrap=b,s,h,l,<,>,[,],~ " It is possible to move from the end of the line to the beginning of the next line by moving the cursor left and right
+set number " Show line number
+set cursorline " Highlight the cursor line
 
-" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
+" If the line is displayed by wrapping, move the cursor by display line instead of line by line
 nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
 
-" バックスペースキーの有効化
+" Activate backspace key
 set backspace=indent,eol,start
 
 "----------------------------------------------------------
-" カッコ・タグの対応
+" Correspondence of parentheses · tag
 "----------------------------------------------------------
-set showmatch " 括弧の対応関係を一瞬表示する
-source $VIMRUNTIME/macros/matchit.vim " Vimの「%」を拡張する
+set showmatch " Display the correspondence of parentheses for a moment
+source $VIMRUNTIME/macros/matchit.vim " Extend "%" of Vim
 
 "----------------------------------------------------------
-" マウスでカーソル移動とスクロール
+" Move cursor and scroll with mouse
 "----------------------------------------------------------
 if has('mouse')
     set mouse=a
@@ -157,9 +157,9 @@ if has('mouse')
 endif
 
 "----------------------------------------------------------
-" クリップボードからのペースト
+" Paste from clipboard
 "----------------------------------------------------------
-" 挿入モードでクリップボードからペーストする時に自動でインデントさせないようにする
+" Prevent automatic indentation when pasting from clipboard in insert mode
 if &term =~ "xterm"
     let &t_SI .= "\e[?2004h"
     let &t_EI .= "\e[?2004l"
@@ -174,45 +174,45 @@ if &term =~ "xterm"
 endif
 
 "----------------------------------------------------------
-" neocomplete・neosnippetの設定
+" Setting of neocomplete · neosnippet
 "----------------------------------------------------------
 if neobundle#is_installed('neocomplete.vim')
-    " Vim起動時にneocompleteを有効にする
+    " Enable neocomplete when starting Vim
     let g:neocomplete#enable_at_startup = 1
-    " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
+    " Activate smartcase ignoring case sensitivity until capital letters are entered
     let g:neocomplete#enable_smart_case = 1
-    " 3文字以上の単語に対して補完を有効にする
+    " Enable completion for three or more words
     let g:neocomplete#min_keyword_length = 3
-    " 区切り文字まで補完する
+    " Complement to the delimiter
     let g:neocomplete#enable_auto_delimiter = 1
-    " 1文字目の入力から補完のポップアップを表示
+    " Display completed completion from first character input
     let g:neocomplete#auto_completion_start_length = 1
-    " バックスペースで補完のポップアップを閉じる
+    " Close complementary popup in backspace
     inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
 
-    " エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
+    " Confirm completion candidate with enter key.End snippet expansion with enter key as well
     imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-    " タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
+    " Tab key to select completion candidate. Jump in snippet also jump with tab key
     imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 endif
 
 "----------------------------------------------------------
 " Syntastic
 "----------------------------------------------------------
-" 構文エラー行に「>>」を表示
+" ">>" is displayed on the syntax error line
 let g:syntastic_enable_signs = 1
-" 他のVimプラグインと競合するのを防ぐ
+" Prevent contention with other Vim plugins
 let g:syntastic_always_populate_loc_list = 1
-" 構文エラーリストを非表示
+" Hide syntax error list
 let g:syntastic_auto_loc_list = 0
-" ファイルを開いた時に構文エラーチェックを実行する
+" Perform a syntax error check when opening a file
 let g:syntastic_check_on_open = 1
-" 「:wq」で終了する時も構文エラーチェックする
+" Also check syntax errors when ending with ": wq"
 let g:syntastic_check_on_wq = 1
 
-" Javascript用. 構文エラーチェックにESLintを使用
+" For Javascript. Use ESLint for syntax error checking
 let g:syntastic_javascript_checkers=['eslint']
-" Javascript以外は構文エラーチェックをしない
+" Do not check syntax errors except Javascript
 let g:syntastic_mode_map = { 'mode': 'passive',
                            \ 'active_filetypes': ['javascript'],
                            \ 'passive_filetypes': [] }
@@ -220,20 +220,20 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 "----------------------------------------------------------
 " CtrlP
 "----------------------------------------------------------
-let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " マッチウインドウの設定. 「下部に表示, 大きさ20行で固定, 検索結果100件」
-let g:ctrlp_show_hidden = 1 " .(ドット)から始まるファイルも検索対象にする
-let g:ctrlp_types = ['fil'] "ファイル検索のみ使用
-let g:ctrlp_extensions = ['funky', 'commandline'] " CtrlPの拡張として「funky」と「commandline」を使用
+let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " Match window setting "Display at the bottom, fix with size of 20 lines, 100 search results"
+let g:ctrlp_show_hidden = 1 " Also search for files starting from. (Dot)
+let g:ctrlp_types = ['fil'] "Use file search only
+let g:ctrlp_extensions = ['funky', 'commandline'] " Use "funky" and "commandline" as extension of CtrlP
 
-" CtrlPCommandLineの有効化
+" Enable CtrlPCommandLine
 command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
 
-" CtrlPFunkyの絞り込み検索設定
+" CtrlPFunky refine search setting
 let g:ctrlp_funky_matchtype = 'path'
 
 if executable('ag')
-  let g:ctrlp_use_caching=0 " CtrlPのキャッシュを使わない
-  let g:ctrlp_user_command='ag %s -i --hidden -g ""' " 「ag」の検索設定
+  let g:ctrlp_use_caching=0 " Do not use CtrlP cache
+  let g:ctrlp_user_command='ag %s -i --hidden -g ""' " Search setting of "ag"
 endif
 
 " open the .vimrc
