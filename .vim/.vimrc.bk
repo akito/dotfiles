@@ -1,0 +1,48 @@
+"----------------------------------------------------------
+" Setting of neocomplete · neosnippet
+"----------------------------------------------------------
+if neobundle#is_installed('neocomplete.vim')
+    " Enable neocomplete when starting Vim
+    let g:neocomplete#enable_at_startup = 1
+    " Activate smartcase ignoring case sensitivity until capital letters are entered
+    let g:neocomplete#enable_smart_case = 1
+    " Enable completion for three or more words
+    let g:neocomplete#min_keyword_length = 3
+    " Complement to the delimiter
+    let g:neocomplete#enable_auto_delimiter = 1
+    " Display completed completion from first character input
+    let g:neocomplete#auto_completion_start_length = 1
+    " Close complementary popup in backspace
+    inoremap <expr><BS> neocomplete#smart_close_popup()."<C-h>"
+
+    " Confirm completion candidate with enter key.End snippet expansion with enter key as well
+    imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+    " Tab key to select completion candidate. Jump in snippet also jump with tab key
+    imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+endif
+
+
+
+"----------------------------------------------------------
+" CtrlP
+"----------------------------------------------------------
+let g:ctrlp_match_window = 'order:ttb,min:20,max:20,results:100' " Match window setting "Display at the bottom, fix with size of 20 lines, 100 search results"
+let g:ctrlp_show_hidden = 1 " Also search for files starting from. (Dot)
+let g:ctrlp_types = ['fil'] "Use file search only
+let g:ctrlp_extensions = ['funky', 'commandline'] " Use "funky" and "commandline" as extension of CtrlP
+
+" Enable CtrlPCommandLine
+command! CtrlPCommandLine call ctrlp#init(ctrlp#commandline#id())
+
+" CtrlPFunky refine search setting
+let g:ctrlp_funky_matchtype = 'path'
+
+if executable('ag')
+  let g:ctrlp_use_caching=0 " Do not use CtrlP cache
+  let g:ctrlp_user_command='ag %s -i --hidden -g ""' " Search setting of "ag"
+endif
+
+" open the .vimrc
+nmap <Space>,  :<C-u>edit $MYVIMRC<CR>
+" import
+nmap <Space>.  :<C-u>source $MYVIMRC<CR>
