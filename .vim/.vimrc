@@ -84,7 +84,7 @@ endif
 set whichwrap=b,s,h,l,<,>,[,],~ " It is possible to move from the end of the line to the beginning of the next line by moving the cursor left and right
 set number " Show line number
 set cursorline " Highlight the cursor line
-set cursorcolumn "Show cursor column line
+"set cursorcolumn "Show cursor column line
 set virtualedit=onemore "Add one letter at the end of the line
 
 " If the line is displayed by wrapping, move the cursor by display line instead of line by line

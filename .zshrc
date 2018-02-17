@@ -88,3 +88,6 @@ source $ZSH/oh-my-zsh.sh
 alias updatedb='sudo /usr/libexec/locate.updatedb'
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
