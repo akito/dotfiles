@@ -1,0 +1,36 @@
+[user]
+    name = akitojp
+    email = akito.tsutsui@gmail.com
+[core]
+    pager = less -q -R
+    excludesfile = ~/.gitignore
+    editor = vim -c \"set fenc=utf-8\"
+    preloadindex = true
+    quotepath = false
+
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+
+[help]
+    autocorrect = 1
+
+[pager]
+    log  = diff-highlight | less -RX
+    show = diff-highlight | less -RX
+    diff = diff-highlight | less -RX
+
+[diff]
+    tool      = vimdiff
+    algorithm = histogram
+
+[merge]
+    tool = vimdiff
+
+[alias]
+    ci = commit
+    st = status
+    br = branch
+    co = checkout
