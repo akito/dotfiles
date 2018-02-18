@@ -5,8 +5,7 @@ if type networksetup > /dev/null 2>&1; then
   WIFI_NAME=$(networksetup -getairportnetwork en0 | awk -F ": " '{print $2}')
 
   if [ "$WIFI_POWER" = "On" ];then
-    echo "⚡︎" \
-      "$WIFI_NAME"
+    echo a"$WIFI_NAME"
   else
     echo "OFFLINE"
   fi
