@@ -1,5 +1,5 @@
 [user]
-    name = akitojp
+	name = Akito Tsutsui
     email = akito.tsutsui@gmail.com
 [core]
     pager = less -q -R
@@ -16,11 +16,6 @@
 
 [help]
     autocorrect = 1
-
-[pager]
-    log  = diff-highlight | less -RX
-    show = diff-highlight | less -RX
-    diff = diff-highlight | less -RX
 
 [diff]
     tool      = vimdiff
