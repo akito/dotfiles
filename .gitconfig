@@ -3,7 +3,7 @@
     email = akito.tsutsui@gmail.com
 [core]
     pager = less -q -R
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/akito/.gitignore_global
     editor = vim -c \"set fenc=utf-8\"
     preloadindex = true
     quotepath = false

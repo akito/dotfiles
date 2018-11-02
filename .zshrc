@@ -92,3 +92,19 @@ eval "$(rbenv init -)"
 EDITOR=vim
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=/Applications/Postgres.app/Contents/Versions/9.6/bin:$PATH
+
+export PATH=$PATH:/usr/local/mysql/bin
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# Add Visual Studio Code (code)
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+
+# Android Studio
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
