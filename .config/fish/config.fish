@@ -24,3 +24,6 @@ export EDITOR=vim
 
 set -g fish_user_paths "/usr/local/opt/v8@3.15/bin" $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/imagemagick@6/bin" $fish_user_paths
+
+# pow 
+export POW_DOMAINS=test,dev
